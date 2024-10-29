@@ -1,6 +1,6 @@
 #include <stdio.h>   // Biblioteca para entrada e saída (printf, scanf).
 #include <string.h>  // Biblioteca para manipulação de strings (strcmp, strcat).
-#include <math.h>    // Biblioteca matemática.
+#include <math.h>    // Biblioteca de funções matemáticas.
 #include <stdlib.h>  // Biblioteca para funções gerais como system() e sleep().
 #include <stdbool.h> // Biblioteca para usar booleanos (true/false).
 #include <ctype.h>   // Biblioteca para manipular caracteres.
@@ -8,6 +8,7 @@
 // Função 'Search' que imprime quanto foi gasto em uma categoria específica.
 int Search(char Area[], float SumG, float SumT, float SumL, float SumTra, float SumS, 
            float MonthSum, float TotalSum, int Z) {
+           
     // Verifica a categoria escolhida e imprime o valor correspondente.
     if (strcmp(Area, "Grocery") == 0 || strcmp(Area, "grocery") == 0) {
         printf("You spent $%.2f on Grocery.\n", SumG);
@@ -38,7 +39,7 @@ int Search(char Area[], float SumG, float SumT, float SumL, float SumTra, float 
 int main() {
     int Sel1, Sel2;  // Variáveis para seleção dos menus principais e secundários.
     char Area[20], Name[100];  // Strings para nome e categoria escolhida.
-    char String[] = ", please, be welcome!";  // Mensagem personalizada.
+    char String[] = ", please, be welcome!";  // Mensagem personalizada para saudar o usuário.
     float Salary;  // Armazena o salário do usuário.
     float Expenses[8];  // Vetor para armazenar despesas fixas mensais.
     float Grocery[20] = {0}, Transport[20] = {0}, Leisure[20] = {0};
@@ -75,7 +76,8 @@ int main() {
         printf("\t0 => Exit\n");
         scanf("%d", &Sel1);  // Lê a escolha do menu principal.
         while (getchar() != '\n');  // Limpa o buffer.
-
+               
+         //Cada opção do menu principal.
         switch (Sel1) {
             case 1:
                 printf("Enter up to 20 values for Grocery. Enter 0 to stop.\n");
@@ -93,9 +95,9 @@ int main() {
                 for (int i = 0; i < 20; i++) {
                     printf("Amount spent: ");
                     scanf("%f", &Transport[i]);
-                    if (Transport[i] <= 0) break;
-                    SumT += Transport[i];
-                    TotalSum += Transport[i];
+                    if (Transport[i] <= 0) break;// Interrompe se o valor for 0.
+                    SumT += Transport[i];//Soma dos valores.
+                    TotalSum += Transport[i];// Atualiza o total
                 }
                 break;
 
