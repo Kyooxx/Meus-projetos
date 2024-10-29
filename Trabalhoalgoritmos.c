@@ -1,9 +1,9 @@
 #include <stdio.h>   // Biblioteca para entrada e saída (printf, scanf).
 #include <string.h>  // Biblioteca para manipulação de strings (strcmp, strcat).
-#include <math.h>    // Biblioteca matemática (não usada nesse código, mas incluída).
+#include <math.h>    // Biblioteca matemática.
 #include <stdlib.h>  // Biblioteca para funções gerais como system() e sleep().
 #include <stdbool.h> // Biblioteca para usar booleanos (true/false).
-#include <ctype.h>   // Biblioteca para manipular caracteres (não usada, mas incluída).
+#include <ctype.h>   // Biblioteca para manipular caracteres.
 
 // Função 'Search' que imprime quanto foi gasto em uma categoria específica.
 int Search(char Area[], float SumG, float SumT, float SumL, float SumTra, float SumS, 
