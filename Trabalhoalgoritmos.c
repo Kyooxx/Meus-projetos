@@ -28,7 +28,7 @@ int Search(char Area[], float SumG, float SumT, float SumL, float SumTra, float 
         Z = 0;
         printf("Returning...");
         sleep(3);  // Aguarda 3 segundos.
-        system("cls");  // Limpa a tela (em sistemas Windows).
+        system("cls");  // Limpa a tela.
         return Z;
     }
     return Z;  // Retorna o valor de Z.
