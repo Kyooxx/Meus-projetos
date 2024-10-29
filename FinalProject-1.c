@@ -1,52 +1,64 @@
-#include<stdio.h>
-#include<string.h>
-#include<math.h> 
-#include<stdlib.h> 
-#include<stdbool.h>
-#include<ctype.h>
+#include<stdio.h>//biblioteca para entrada e saída
+#include<string.h>//biblioteca com funções para manipulação de strings (srrcmp, strcat).
+#include<math.h>//Biblioteca de funções matemáticas (pow, sqrt).
+#include<stdlib.h>//Biblioteca para funções de controle do sistema(system, sleep).
+#include<stdbool.h>//Biblioteca para uso de variáveis booleanas (true/false).
+#include<ctype.h>//Biblioteca para manipulação de caracteres.
 
+//Função que imprime os gastos com base na área que é fornecida pelo usuário.
 int Search(char Area[], float SumG, float SumT, float SumL, float SumTra, float SumS, float MonthSum, float TotalSum, int Z){
+
+//Verifica se a área é "Grocery"(mercado).//
     if(strcmp(Area, "Grocery") == 0 || strcmp(Area, "grocery") == 0){
         printf("You spent $%.2f on Grocery.\n", SumG);
     } 
+//Verifica se a área é "Transport" (transporte).//
     else if(strcmp(Area, "Transport") == 0 || strcmp(Area, "transport") == 0){
         printf("You spent $%.2f on Transport.\n", SumT);
     } 
+//Verifica se a área é "Leisure" (lazer).//
     else if(strcmp(Area, "Leisure") == 0 || strcmp(Area, "leisure") == 0){
         printf("You spent $%.2f on Leisure.\n", SumL);
     } 
+//Verifica se é a área "Travelling" (viagem).// 
     else if(strcmp(Area, "Travelling") == 0 || strcmp(Area, "travelling") == 0){
         printf("You spent $%.2f on Travelling.\n", SumTra);
     } 
+//Verifica se é a área "Shopping" (compras).//
     else if(strcmp(Area, "Shopping") == 0 || strcmp(Area, "shopping") == 0){
         printf("You spent $%.2f on Shopping.\n", SumS);
     } 
+//Verifica se é a área "Monthly Expenses" (despesas mensais).//
     else if(strcmp(Area, "Monthly Expenses") == 0 || strcmp(Area, "monthly expenses") == 0){
         printf("You spent $%.2f on Monthly Expenses.\n", MonthSum);
     } 
+//Verifica se é a área "Total" (total de todas as despesas).//
     else if(strcmp(Area, "Total") == 0 || strcmp(Area, "total") == 0){
         printf("Your total spending is $%.2f.\n", TotalSum);
     } 
+//Se a área não for reconhecida, retorna ao menu principal//
     else {
-        Z = 0;
+        Z = 0;//Define Z como zero indicando que é hora de voltar
         printf("Returning...");
-        sleep(3);
-        system("cls");
-        return Z;
+        sleep(3);//Gera uma espera de 3 segundos
+        system("cls");//limpa a tela
+        return Z;//Retorna o valor de z
     }
 }
 
  
-
+//Função principal onde a execução do programa começa//
 
 int main(){
-    int Sel1; //Variável para seleção do menu principal.
-    int Sel2; // Variável para a seleção do segundo menu.
-    char Area[20]; //String para a seleção do menu de relatório de despesas.
-    char Name[100]; 
-    char String[] = ", please, be welcome!";
-    float Salary;
+    int Sel1; //Variável para armazenar a escolha do menu principal.
+    int Sel2; // Variável para armazenar a escolha do segundo menu.
+    char Area[20]; //String para armazenar a área de gastos escolhida
+    char Name[100];//string para armazenar o nome do usuário 
+    char String[] = ", please, be welcome!";//String de saudação que se concatena com o nome do usuário 
+    float Salary;//String para armazenar o valor do salário 
     float Expenses[8]; //Vetor para que o usuário coloque as despesas consideradas fixas a cada mês.
+
+//Vetores para registrar até 20 valores para cada categoria de gastos
     float Grocery[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     float SumG = 0;//
     float Transport[]= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -58,22 +70,27 @@ int main(){
     float Shopping[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     float SumS = 0;
     float MonthSum = 0; // Soma das despesas que são consideradas mensais.
-    float TotalSum = 0; // Soma de todas as despesas que a pessoa durante o mês inteiro.
-    bool X = 1, Y = 1, Z = 1; // Variável para controlar o do while principal.
+    float TotalSum = 0; // Soma de todas as despesas.
+    bool X = 1, Y = 1, Z = 1; // Variável para controlar os loops do menu.
 
+//Saudações Iniciais//
     printf("Hi, I am Karek, the one who will help you with your spendings\n");
     printf("Please, tell me your name:\n");
+
+//Lê o nome do usuário e remove a quebra de linha//
         fgets(Name, 50, stdin);
         Name[strcspn(Name, "\n")] = '\0';
-            strcat(Name, String);
-            printf("%s\n", Name);
+            strcat(Name, String);//Concatena o nome do usuário a mensagem
+            printf("%s\n", Name);//Exibe o nome com a saudação
            
+//Solicita o salário até que um valor válido seja fornecido//
     do{
     printf("Now, how much money do you make per month? Enter a positive number different to zero.\n");
     scanf("%f", &Salary); 
-      }while(Salary <= 0);
+      }while(Salary <= 0);//repete até ser positivo 
 
     do{
+//exibe as opções do menu principal//
         printf("\t----------MENU----------\n");
         printf("Which one of these areas did you spend your money today?\n");
         printf("\t 1 => Grocery\n");
@@ -85,30 +102,32 @@ int main(){
         printf("\t 7 => know how much you have spent\n");
         printf("\t 0 => Exit\n");
             scanf("%d", &Sel1);
-             while (getchar() != '\n');//limpeza 
+             while (getchar() != '\n');//limpeza//limpa o buffer 
 
+//Verifica a escolha do usuário//
                 switch(Sel1){
-                    case 1: 
+                    case 1: //categoria grocery
                     printf("You can put a maximum of 20 values.\n");
                     for(int I = 0; I < 20; I++){
                     printf("How much did you spend in grocery? Enter 0 to finish.\n");
                     scanf("%f", &Grocery[I]);
 
-                    SumG += Grocery[I];
+                    SumG += Grocery[I];//Atualiza a soma da categoria mercado
                    
                     if((Grocery[I] <= 0)){
                         printf("Returning...");
-                        sleep(3);
-                        system("cls");
-                        break;
+                        sleep(3);//Aguarda 3 segundos
+                        system("cls");//limpa a tela
+                        break;//sai do loop
                     }
-                    TotalSum += Grocery[I];
+                    TotalSum += Grocery[I];//atualiza o total geral
                     
-                    if(TotalSum >= Salary){
+                    if(TotalSum >= Salary){//condição que notifica se o usuário gastou mais que o salário informado
                         printf("You have achieved the maxumum of expenses, now you account is negative. (%f)", Salary - TotalSum);
                     }
                      }
                     break;
+//Os outros casos seguem o mesmo padrão descrito anteriormente//
                         case 2: 
                         printf("You can put a maximum of 20 values.\n");
                     for(int I = 0; I < 20; I++){
@@ -203,6 +222,8 @@ int main(){
 
                                     }
                                     break;
+
+//Exibição do sub-menu//
                     case 6:
                     while(Y == 1){
                     printf("\t----------SUBMENU----------\n");
@@ -254,7 +275,7 @@ int main(){
                                         if(TotalSum >= Salary){
                                         printf("You have achieved the maxumum of expenses, now you account is negative. (%f)", Salary - TotalSum);}
                                         break;
-                                                case 5: 
+                                                case 5:
                                                 printf("How much did you spend on the income tax?\n");
                                                 scanf("%f", &Expenses[4]);
                                                 MonthSum += Expenses[4];
@@ -291,14 +312,14 @@ int main(){
                                                             if(TotalSum >= Salary){
                                                             printf("You have achieved the maxumum of expenses, now you account is negative. (%f)", Salary - TotalSum);}
                                                             break;                                    
-                                    case 0:
+                                    case 0://caso seja escolhido zero retorna ao menu
                                     printf("Returning...");
                                     sleep(3);
                                     Y = 0;
                                     system("cls");
                                     break;
 
-                                    default:
+                                    default://caso não seja atendido nenhum dos requisitos retorna ao menu
                                     printf("Returning...");
                                     sleep(3);
                                     Y = 0;
@@ -308,6 +329,8 @@ int main(){
                         }
                     }
                                       break;
+
+//Dá a opção ao usuário de escrever qual das áreas específicas de gastos que ele deseja ver//
                          case 7:
                          while(Z == 1){
                          printf("Write the option you want to see:\n");
@@ -330,6 +353,7 @@ int main(){
                          
                         
                         break;
+//Encerra o programa//
                             case 0:
                             printf("Finishing...");
                             sleep(3);
