@@ -369,6 +369,6 @@ int main(){
                             break;       
 
                 }
-    }while(X);   
+    }while(X);//Repete até que X seja zero
 }
 
