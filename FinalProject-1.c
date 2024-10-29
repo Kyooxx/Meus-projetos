@@ -102,7 +102,7 @@ int main(){
         printf("\t 7 => know how much you have spent\n");
         printf("\t 0 => Exit\n");
             scanf("%d", &Sel1);
-             while (getchar() != '\n');//limpeza//limpa o buffer 
+             while (getchar() != '\n');//limpa o buffer//
 
 //Verifica a escolha do usuário//
                 switch(Sel1){
